@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ComponentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test-1', [ComponentController::class, 'show_1']);
+Route::get('/test-2', [ComponentController::class, 'show_2']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

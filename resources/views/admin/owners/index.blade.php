@@ -9,6 +9,7 @@
               <div class="flex flex-col text-center w-full mb-4">
                 <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">オーナー 一覧</h1>
               </div>
+              <x-flash-message status="info" />
 
               <div style="text-align:right;margin-right:17%;margin-bottom:20px;">
                 <button
@@ -40,8 +41,9 @@
                         <td class="px-4 py-3">{{ $owner->name }}</td>
                         <td class="px-4 py-3">{{ $owner->email }}</td>
                         <td class="px-4 py-3">{{ $owner->created_at->diffForHumans() }}</td>
-                        <td class="w-10 text-center">
-                          <input name="plan" type="radio">
+                        <td class="w-20 text-center ">
+                          <button onclick="location.href='{{ route('admin.owners.edit' , [$owner->id]) }}'"
+                            class=" bg-gray-300 border-0 py-2 px-4 focus:outline-none hover:bg-gray-400">編集</button>
                         </td>
                       </tr>
                     @endforeach

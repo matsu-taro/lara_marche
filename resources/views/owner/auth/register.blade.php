@@ -1,5 +1,5 @@
 <x-guest-layout>
-【管理者用】
+【出店者用】
     <form method="POST" action="{{ route('owner.register') }}">
         @csrf
     

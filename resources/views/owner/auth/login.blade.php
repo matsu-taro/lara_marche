@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    【管理者用】
+    【出店者用】
     <form method="POST" action="{{ route('owner.login') }}">
         @csrf
 

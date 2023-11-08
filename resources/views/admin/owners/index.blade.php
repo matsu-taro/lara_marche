@@ -9,7 +9,7 @@
               <div class="flex flex-col text-center w-full mb-4">
                 <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">オーナー 一覧</h1>
               </div>
-              <x-flash-message status="info" />
+              <x-flash-message status="session('status')" />
 
               <div style="text-align:right;margin-right:17%;margin-bottom:20px;">
                 <button
@@ -30,8 +30,9 @@
                         アドレス</th>
                       <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                         作成日</th>
-                      <th
-                        class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                      </th>
+                      <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
                       </th>
                     </tr>
                   </thead>
@@ -42,13 +43,22 @@
                         <td class="px-4 py-3">{{ $owner->email }}</td>
                         <td class="px-4 py-3">{{ $owner->created_at->diffForHumans() }}</td>
                         <td class="w-20 text-center ">
-                          <button onclick="location.href='{{ route('admin.owners.edit' , [$owner->id]) }}'"
+                          <button onclick="location.href='{{ route('admin.owners.edit', ['owner' => $owner->id]) }}'"
                             class=" bg-gray-300 border-0 py-2 px-4 focus:outline-none hover:bg-gray-400">編集</button>
                         </td>
+                        <form id="delete_{{ $owner->id }}" action="{{ route('admin.owners.destroy', ['owner' => $owner->id]) }}" method="post">
+                          @method('delete')
+                          @csrf
+                          <td class="w-20 text-center ">
+                            <a href="#" onclick="deletePost(this)" data-id="{{ $owner ->id }}"
+                              class=" bg-red-200 border-0 py-2 px-4 focus:outline-none hover:bg-red-400">削除</a>
+                          </td>
+                        </form>
                       </tr>
                     @endforeach
                   </tbody>
                 </table>
+                {{ $owners -> links() }}
               </div>
             </div>
           </section>
@@ -57,4 +67,13 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function deletePost(e) {
+      'use strict'
+      if (confirm('本当に削除して良いですか？')) {
+        document.getElementById('delete_' + e.dataset.id).submit();
+      }
+    }
+  </script>
 </x-app-layout>

@@ -17,7 +17,8 @@ class OwnersController extends Controller
 
     public function index()
     {
-        $owners = Owner::select('id', 'name', 'email', 'created_at')->get();
+        $owners = Owner::select('id', 'name', 'email', 'created_at')
+            ->paginate(3);
 
         return view('admin.owners.index', compact('owners'));
     }
@@ -43,7 +44,10 @@ class OwnersController extends Controller
         ]);
 
         return to_route('admin.owners.index')
-            ->with('message', '登録が完了いたしました');
+            ->with([
+                'message' => '登録が完了しました！',
+                'status' => 'info'
+            ]);
     }
 
     /**
@@ -77,14 +81,23 @@ class OwnersController extends Controller
         $owner->save();
 
         return to_route('admin.owners.index')
-            ->with('message', '編集が完了しました！');
+            ->with([
+                'message' => '編集が完了しました！',
+                'status' => 'info'
+            ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
-        //
+
+
+        Owner::findOrFail($id)->delete(); //ソフトデリート
+
+        return to_route('admin.owners.index')
+            ->with([
+                'message' => '削除しました！',
+                'status' => 'alert'
+            ]);
     }
 }

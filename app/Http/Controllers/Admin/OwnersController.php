@@ -90,8 +90,6 @@ class OwnersController extends Controller
 
     public function destroy(string $id)
     {
-
-
         Owner::findOrFail($id)->delete(); //ソフトデリート
 
         return to_route('admin.owners.index')
@@ -99,5 +97,17 @@ class OwnersController extends Controller
                 'message' => '削除しました！',
                 'status' => 'alert'
             ]);
+    }
+
+    public function expiredOwnerIndex()
+    {
+        $expiredOwners = Owner::onlyTrashed()->paginate(3);
+        return view('admin.expired-owners', compact('expiredOwners'));
+    }
+
+    public function expiredOwnerDestroy($id)
+    {
+        Owner::onlyTrashed()->findOrFail($id)->forceDelete();
+        return to_route('admin.expired-owners.index');
     }
 }

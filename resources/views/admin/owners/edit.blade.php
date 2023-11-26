@@ -25,7 +25,6 @@
                         <li>{{ $error }}</li>
                       @endforeach
                     </ul>
-
                   </div>
                 @endif
                 <form action="{{ route('admin.owners.update' , ['owner'=>$owner->id]) }}" method="post">

@@ -9,6 +9,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900">
+          <x-flash-message status="session('status')" /><br> {{-- フラッシュメッセージ --}}
           @foreach ($shops as $shop)
             <div class="border w-1/2 p-4">
               <a href="{{ route('owner.shops.edit', ['shop' => $shop->id]) }}">
@@ -23,13 +24,8 @@
                 </div>
                 {{ $shop->name }}
 
-                <div>
-                  @if (empty($shop->filename))
-                    <img src="{{ asset('img/noimage.png') }}" alt="">
-                  @else
-                    <img src="{{ asset('storage/shops' . $shop->filename) }}" alt="">
-                  @endif
-                </div>
+                {{-- コンポーネントから読み込み --}}
+                <x-thumbnail :filename="$shop->filename" type="shops"/>
               </a>
             </div>
           @endforeach

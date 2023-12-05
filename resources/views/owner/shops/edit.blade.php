@@ -51,7 +51,7 @@
                 </div>
               </div>
 
-              {{-- 現在の画像 --}}
+              {{-- 現在の画像 サムネ --}}
               <div class="p-2 w-1/2 mx-auto">
                 <x-thumbnail :filename="$shop->filename" type="shops"/>
               </div>

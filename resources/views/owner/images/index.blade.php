@@ -11,24 +11,28 @@
         <div class="p-6 text-gray-900">
           <x-flash-message status="session('status')" /><br> {{-- フラッシュメッセージ --}}
 
-          <div style="text-align:right;margin-right:17%;margin-bottom:20px;">
+          <div style="text-align:right;margin-bottom:20px;">
             <button
               class=" text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
-              style="padding: 10px 20px;margin-top:40px;"
-              onclick="location.href='{{ route('owner.images.create') }}'">
+              style="padding: 10px 20px;margin-top:40px;" onclick="location.href='{{ route('owner.images.create') }}'">
               新規登録
             </button>
           </div>
-          @foreach ($images as $image)
-            <div class="border w-1/4 p-4">
-              <a href="{{ route('owner.images.edit', ['image' => $image->id]) }}">
-                {{ $image->title }}
 
-                {{-- コンポーネントから読み込み --}}
-                <x-thumbnail :filename="$shop->filename" type="products"/>
-              </a>
-            </div>
-          @endforeach
+          <div class="md:flex md:flex-wrap">
+            @foreach ($images as $image)
+              <div class="border md:w-1/4 p-6 md:p-4">
+                <a href="{{ route('owner.images.edit', ['image' => $image->id]) }}">
+                  <div style="height: 1.5rem">
+                    {{ $image->title }}
+                  </div>
+
+                  {{-- コンポーネントから読み込み --}}
+                  <x-thumbnail :filename="$image->filename" type="products" />
+                </a>
+              </div>
+            @endforeach
+          </div>
           {{ $images->links() }}
         </div>
       </div>

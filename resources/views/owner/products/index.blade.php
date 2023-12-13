@@ -25,11 +25,11 @@
                 <div class="border md:w-1/4 p-6 md:p-4">
                   <a href="{{ route('owner.products.edit', ['product' => $product->id]) }}">
                     <div style="height: 1.5rem">
-                      {{-- $product->name --}}
+                      {{$product->name}}
                     </div>
 
                     {{-- コンポーネントから読み込み --}}
-                    <x-thumbnail :filename="$product->imageFirst->filename" type="products" />
+                    <x-thumbnail filename="{{$product->imageFirst->filename ?? ''}}" type="products" />
                   </a>
                 </div>
               @endforeach

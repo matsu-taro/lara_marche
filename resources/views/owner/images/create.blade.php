@@ -30,7 +30,7 @@
             @csrf
             <div class="-m-2">
 
-              {{-- 画像の変更 --}}
+              {{-- 画像の選択 --}}
               <div class="p-2 w-1/2 mx-auto">
                 <div class="relative">
                   <label for="image" class="leading-7 text-sm text-gray-600">画像</label>

@@ -72,12 +72,14 @@ class ImageController extends Controller
       ]);;
   }
 
+  
   public function edit(string $id)
   {
     $image = Image::findOrFail($id);
 
     return view('owner.images.edit', compact('image'));
   }
+
 
   public function update(Request $request, string $id)
   {
@@ -96,9 +98,7 @@ class ImageController extends Controller
       ]);;
   }
 
-  /**
-   * Remove the specified resource from storage.
-   */
+ 
   public function destroy(string $id)
   {
 

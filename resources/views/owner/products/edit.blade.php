@@ -85,8 +85,8 @@
                   <label for="quantity" class="leading-7 text-sm text-gray-600">数量</label><span
                     class="text-red-600 text-xs ml-2">※必須</span>
                     <div class="relative mb-2">
-                      <input type="radio" name="type" value="1" checked> 追加
-                      <input type="radio" name="type" value="2"> 削減
+                      <input type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['add'] }}" checked> 追加
+                      <input type="radio" name="type" value="{{ \Constant::PRODUCT_LIST['reduce'] }}"> 削減
                     </div>
                   <input type="number" id="quantity" name="quantity" value="0" required
                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">

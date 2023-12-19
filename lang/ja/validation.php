@@ -162,6 +162,7 @@ return [
         'email' => 'メールアドレス',
         'url' => 'URL',
         'content' => 'メモの内容',
+        'quantity'=>'数量',
     ],
 
 ];
